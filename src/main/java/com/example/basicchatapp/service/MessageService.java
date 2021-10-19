@@ -10,12 +10,12 @@ import java.util.List;
 
 @Service
 public class MessageService {
-    private List<ChatMessage> messages;
+    private List<ChatMessage> chatMessages;
 
     @PostConstruct
     public void postConstruct(){
         System.out.println("Creating MessageService bean");
-        messages = new ArrayList<>();
+        chatMessages = new ArrayList<>();
     }
 
     public void addMessage(ChatForm chatForm){
@@ -30,10 +30,10 @@ public class MessageService {
         if(chatForm.getMessageType().equals("Whisper")){
             newMessage.setMessage(chatForm.getMessageText().toLowerCase());
         }
-        this.messages.add(newMessage);
+        this.chatMessages.add(newMessage);
     }
 
     public List<ChatMessage> getChatMessages(){
-        return messages;
+        return chatMessages;
     }
 }
