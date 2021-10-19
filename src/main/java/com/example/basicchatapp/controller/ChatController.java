@@ -28,6 +28,7 @@ public class ChatController {
     public String postChatMessage(ChatForm chatForm, Model model){
         messageService.addMessage(chatForm);
         chatForm.setMessageText("");
+        chatForm.setUsername("");
         model.addAttribute("chatMessages", this.messageService.getChatMessages());
         return "chat";
     }
