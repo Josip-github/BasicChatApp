@@ -1,7 +1,7 @@
 package com.example.basicchatapp.service;
 
 import com.example.basicchatapp.model.ChatForm;
-import com.example.basicchatapp.model.ChatMessage;
+import com.example.basicchatapp.model.Message;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -10,30 +10,30 @@ import java.util.List;
 
 @Service
 public class MessageService {
-    private List<ChatMessage> chatMessages;
+    private List<Message> messages;
 
     @PostConstruct
     public void postConstruct(){
         System.out.println("Creating MessageService bean");
-        chatMessages = new ArrayList<>();
+        messages = new ArrayList<>();
     }
 
     public void addMessage(ChatForm chatForm){
-        ChatMessage newMessage = new ChatMessage();
+        Message newMessage = new Message();
         newMessage.setUsername(chatForm.getUsername());
         if(chatForm.getMessageType().equals("Say")){
-            newMessage.setMessage(chatForm.getMessageText());
+            newMessage.setMessageText(chatForm.getMessageText());
         }
         if(chatForm.getMessageType().equals("Shout")){
-            newMessage.setMessage(chatForm.getMessageText().toUpperCase());
+            newMessage.setMessageText(chatForm.getMessageText().toUpperCase());
         }
         if(chatForm.getMessageType().equals("Whisper")){
-            newMessage.setMessage(chatForm.getMessageText().toLowerCase());
+            newMessage.setMessageText(chatForm.getMessageText().toLowerCase());
         }
-        this.chatMessages.add(newMessage);
+        this.messages.add(newMessage);
     }
 
-    public List<ChatMessage> getChatMessages(){
-        return chatMessages;
+    public List<Message> getChatMessages(){
+        return messages;
     }
 }
