@@ -2,6 +2,7 @@ package com.example.basicchatapp.service;
 
 import com.example.basicchatapp.model.ChatForm;
 import com.example.basicchatapp.model.Message;
+import com.example.basicchatapp.repository.MessageMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -10,12 +11,16 @@ import java.util.List;
 
 @Service
 public class MessageService {
-    private List<Message> messages;
+
+    private MessageMapper messageMapper;
+
+    public MessageService(MessageMapper messageMapper) {
+        this.messageMapper = messageMapper;
+    }
 
     @PostConstruct
     public void postConstruct(){
         System.out.println("Creating MessageService bean");
-        messages = new ArrayList<>();
     }
 
     public void addMessage(ChatForm chatForm){
@@ -30,10 +35,11 @@ public class MessageService {
         if(chatForm.getMessageType().equals("Whisper")){
             newMessage.setMessageText(chatForm.getMessageText().toLowerCase());
         }
-        this.messages.add(newMessage);
+        messageMapper.insert(newMessage);
+        //this.messages.add(newMessage);
     }
 
     public List<Message> getChatMessages(){
-        return messages;
+        return messageMapper.getAllMessages();
     }
 }
