@@ -29,6 +29,9 @@
     </select>
     <input type="submit">
 </form>
+<form method="post" th:action="@{/logout}">
+    <button type="submit">Logout</button>
+</form>
 <div th:each="message : ${chatMessages}">
     <span th:text="${message.username}">Username</span>:<span th:text="${message.messageText}">Hello world</span>
 </div>
