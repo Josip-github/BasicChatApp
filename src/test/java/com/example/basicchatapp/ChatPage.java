@@ -1,5 +1,6 @@
 package com.example.basicchatapp;
 
+import com.example.basicchatapp.model.ChatForm;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,5 +24,15 @@ public class ChatPage {
         PageFactory.initElements(driver, this);
     }
 
+    public void submitNewMessage(String text){
+        this.messageTextField.sendKeys(text);
+        this.submitButton.click();
+    }
 
+    public ChatForm getFirstMessage(){
+        ChatForm message = new ChatForm();
+        message.setUsername(firstMessageUsername.getText());
+        message.setMessageText(firstMessageText.getText());
+        return message;
+    }
 }
