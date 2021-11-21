@@ -1,7 +1,9 @@
 package com.example.basicchatapp;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ChatPage {
 
@@ -17,6 +19,9 @@ public class ChatPage {
     @FindBy(className = "chatMessageText")
     private WebElement firstMessageText;
 
+    public ChatPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
 
 }
