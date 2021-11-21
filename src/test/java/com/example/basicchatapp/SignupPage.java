@@ -26,5 +26,12 @@ public class SignupPage {
         PageFactory.initElements(driver, this);
     }
 
+    public void signup(String firstname, String lastname, String username, String password){
+        this.firstnameField.sendKeys(firstname);
+        this.lastnameField.sendKeys(lastname);
+        this.usernameField.sendKeys(username);
+        this.passwordField.sendKeys(password);
+        this.submitButton.click();
+    }
 
 }
