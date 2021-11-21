@@ -19,4 +19,10 @@ public class LoginPage {
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
+
+    public void login(String username, String password){
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
+        submitButton.click();
+    }
 }
